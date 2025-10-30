@@ -203,4 +203,43 @@ body {
     height: 95vh;
     border-radius: 0;
   }
+  .bot-message {
+  background: #e3f2fd;
+  color: #000;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px;
+  width: fit-content;
+  max-width: 80%;
+}
+
+.user-message {
+  background: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px;
+  width: fit-content;
+  max-width: 80%;
+  margin-left: auto;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 5px;
+  margin: 10px;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: gray;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.typing-indicator.hidden {
+  display: none;
+}
+
 }
