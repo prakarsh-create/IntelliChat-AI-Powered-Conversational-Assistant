@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="chat-wrapper">
+    <div class="chat-container">
+      
+      <!-- Chat Header -->
+      <header class="chat-header">
+        <div class="chat-title">
+          <img src="https://cdn-icons-png.flaticon.com/512/4712/4712104.png" alt="bot" class="bot-avatar">
+          <div>
+            <h2>IntelliChat — AI-Powered Conversational Assistant</h2>
+            <p class="status">🟢 Online</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Chat Box -->
+      <main id="chat-box" class="chat-box">
+        <div class="bot-message">Hello! How can I assist you today?</div>
+      </main>
+
+      <!-- Typing Indicator -->
+      <div id="typing-indicator" class="typing-indicator hidden">
+        <span></span><span></span><span></span>
+      </div>
+
+      <!-- Chat Input -->
+      <footer class="chat-input">
+        <input id="user-input" type="text" placeholder="Type your message..." autocomplete="off" />
+        <button id="send-btn" title="Send">➤</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
