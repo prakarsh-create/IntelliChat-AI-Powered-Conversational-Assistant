@@ -1,21 +1,21 @@
 # 🤖 IntelliChat — AI-Powered Conversational Assistant
 
-**IntelliChat** is a full-stack **AI chatbot web application** built using **Flask (Python)** and **HTML, CSS, JavaScript**.  
-It allows users to chat with an intelligent virtual assistant that can understand and respond naturally to user inputs.
+**IntelliChat** is a **conversational AI chatbot** built with **Python Flask** and **modern web technologies**. 
+It enables natural conversations with an AI assistant through a clean web interface, providing intelligent responses to user queries.
 
-The project demonstrates how to combine **frontend–backend communication**, **Flask APIs**, and **AI model integration** (like OpenAI API or Hugging Face) to create an interactive chatbot experience similar to ChatGPT.
+The project showcases **API integration**, **frontend-backend communication**, and modern web development practices to create an interactive ChatGPT-like experience.
 
 ---
 
 ## 🚀 Features
 
-- 💬 Real-time chat between user and bot  
-- 🧠 AI-powered replies (OpenAI / Hugging Face model)  
-- ✨ Clean and responsive chat UI  
-- ⏳ Typing animation for realistic effect  
-- 🎤 Optional voice input and text-to-speech replies  
-- ⚙️ Modular backend (Flask API)  
-- ☁️ Deployed on Render + Netlify  
+- 💬 Natural language chat interface
+- 🧠 OpenAI-powered intelligent responses  
+- ✨ Clean, minimal UI design
+- ⚡ Real-time chat experience
+- 🔒 Secure API communication
+- 🌐 Web-based architecture
+- ⚙️ RESTful Flask backend
 
 ---
 
@@ -25,9 +25,8 @@ The project demonstrates how to combine **frontend–backend communication**, **
 |--------|-------------|
 | **Frontend** | HTML, CSS, JavaScript |
 | **Backend** | Python (Flask) |
-| **AI / NLP** | OpenAI API / Hugging Face Transformers |
-| **Database (optional)** | MongoDB / Firebase |
-| **Deployment** | Render (backend), Netlify (frontend) |
+| **AI Engine** | OpenAI API |
+| **API** | REST / HTTP |
 
 ---
 

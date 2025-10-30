@@ -3,32 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Chatbot</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <title>IntelliChat AI</title>
+  
 </head>
 <body>
   <div class="chat-wrapper">
+    
+    <!-- Sidebar - History -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h3>💬 Chat History</h3>
+      </div>
+      <button class="new-chat-btn" onclick="startNewChat()">+ New Chat</button>
+      <div class="history-list" id="history-list">
+        <div class="history-item active">Today's Chat</div>
+        <div class="history-item">Python Learning Session</div>
+        <div class="history-item">Flask API Questions</div>
+        <div class="history-item">Machine Learning Basics</div>
+      </div>
+    </aside>
+
+    <!-- Main Chat -->
     <div class="chat-container">
       
       <!-- Chat Header -->
       <header class="chat-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712104.png" alt="bot" class="bot-avatar">
         <div class="chat-title">
-          <img src="https://cdn-icons-png.flaticon.com/512/4712/4712104.png" alt="bot" class="bot-avatar">
-          <div>
-            <h2>IntelliChat — AI-Powered Conversational Assistant</h2>
-            <p class="status">🟢 Online</p>
-          </div>
+          <h2>IntelliChat AI Assistant</h2>
+          <p class="status">🟢 Online & Ready</p>
         </div>
       </header>
 
       <!-- Chat Box -->
       <main id="chat-box" class="chat-box">
-        <div class="bot-message">Hello! How can I assist you today?</div>
+        <div class="message-wrapper bot-message-wrapper">
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            Hello! I'm IntelliChat, your AI assistant. How can I help you today?
+          </div>
+        </div>
       </main>
 
       <!-- Typing Indicator -->
       <div id="typing-indicator" class="typing-indicator hidden">
-        <span></span><span></span><span></span>
+        <div class="message-avatar" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">🤖</div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
+        </div>
       </div>
 
       <!-- Chat Input -->
@@ -39,6 +62,106 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    // Send message function
+    async function sendMessage() {
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      // Add user message
+      addMessage(message, 'user');
+      userInput.value = '';
+
+      // Show typing indicator
+      typingIndicator.classList.remove('hidden');
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Call Flask API
+      try {
+        const response = await fetch('http://127.0.0.1:5000/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            message: message,
+            user_id: 'web_user_001'
+          })
+        });
+
+        const data = await response.json();
+        
+        // Hide typing indicator
+        typingIndicator.classList.add('hidden');
+        
+        // Add bot response
+        setTimeout(() => {
+          addMessage(data.reply, 'bot', data.sentiment);
+        }, 500);
+
+      } catch (error) {
+        typingIndicator.classList.add('hidden');
+        addMessage('Sorry, I couldn\'t connect to the server. Please try again! 😟', 'bot');
+      }
+    }
+
+    // Add message to chat
+    function addMessage(text, sender, sentiment = '') {
+      const wrapper = document.createElement('div');
+      wrapper.className = `message-wrapper ${sender}-message-wrapper`;
+
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      avatar.textContent = sender === 'bot' ? '🤖' : '👤';
+
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.textContent = text;
+
+      if (sentiment) {
+        const meta = document.createElement('div');
+        meta.className = 'message-meta';
+        meta.textContent = `Sentiment: ${sentiment}`;
+        content.appendChild(meta);
+      }
+
+      wrapper.appendChild(avatar);
+      wrapper.appendChild(content);
+      chatBox.appendChild(wrapper);
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Event listeners
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    // New chat function
+    function startNewChat() {
+      chatBox.innerHTML = `
+        <div class="message-wrapper bot-message-wrapper">
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            Hello! I'm IntelliChat, your AI assistant. How can I help you today?
+          </div>
+        </div>
+      `;
+    }
+
+    // History item click
+    document.querySelectorAll('.history-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.history-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
