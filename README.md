@@ -1,8 +1,5 @@
 🤖 IntelliChat — AI-Powered Conversational Assistant
-Show Image
-Show Image
-Show Image
-Show Image
+
 IntelliChat is a full-stack AI chatbot web application powered by Microsoft's DialoGPT model and built with Flask (Python) and modern web technologies. It provides natural, context-aware conversations completely offline — no paid APIs required!
 Unlike simple keyword-based chatbots, IntelliChat uses a real conversational AI model that understands context, remembers conversations, and generates human-like responses.
 
